@@ -8,5 +8,5 @@ A docker image that runs the [Homebridge](https://github.com/nfarina/homebridge)
 map a volume to the homebridge root directory containing your config.json file.
 
 ```
-$ docker run -d -p 0.0.0.0:51826:51826 -v /home/pi/rpi-homebridge:/root/.homebridge --net=host rpi-homebridge
+$ docker run -d -p 0.0.0.0:51826:51826 -v /home/pi/rpi-homebridge:/root/.homebridge --net=host jritsema/rpi-homebridge
 ```
