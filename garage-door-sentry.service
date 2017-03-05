@@ -5,8 +5,10 @@ After=docker.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/docker run -p 0.0.0.0:51826:51826 --log-opt max-size=5m -v /home/pi/.homebridge:/root/.homebridge --name garage-sentry --net=host rcreasey/rpi-homebridge
-ExecStop=/usr/bin/docker stop -t 2 garage-sentry
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run -p 0.0.0.0:51826:51826 --log-opt max-size=5m -v /home/pi/.homebridge:/root/.homebridge --name %n --net=host rcreasey/rpi-homebridge
+ExecStop=/usr/bin/docker stop -t 2 %n
 
 [Install]
 WantedBy=default.target
