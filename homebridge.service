@@ -1,5 +1,5 @@
 [Unit]
-Description=Garage Door Sentry
+Description=Homebridge
 Requires=docker.service
 After=docker.service
 
@@ -7,7 +7,7 @@ After=docker.service
 Restart=always
 ExecStartPre=-/usr/bin/docker stop %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStart=/usr/bin/docker run -p 0.0.0.0:51826:51826 --log-opt max-size=5m -v /home/pi/.homebridge:/root/.homebridge --name %n --net=host rcreasey/rpi-homebridge
+ExecStart=/usr/bin/docker run -p 0.0.0.0:51826:51826 -v /opt/homebridge:/root/.homebridge --name %n --net=host rcreasey/rpi-homebridge
 ExecStop=/usr/bin/docker stop -t 2 %n
 
 [Install]
