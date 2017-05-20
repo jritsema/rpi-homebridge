@@ -23,8 +23,9 @@ RUN npm install -g https://github.com/rcreasey/homebridge-garage-sentry.git --un
 RUN npm install -g homebridge-platform-ring-video-doorbell
 
 USER root
+VOLUME ["/root/.homebridge"]
 RUN mkdir -p /var/run/dbus
 
-ADD run.sh /root/run.sh
+COPY run.sh /root/run.sh
 RUN chmod +x /root/run.sh
 CMD ["/root/run.sh"]
